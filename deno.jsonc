@@ -10,5 +10,6 @@
     "testing/": "https://deno.land/std@0.195.0/testing/",
     "lemmy-js-client/": "npm:/lemmy-js-client/",
     "cliui/deno.ts": "https://deno.land/x/cliui@v8.0.1-deno/deno.ts"
-  }
+  },
+  "main": "main.ts"
 }
