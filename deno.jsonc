@@ -1,0 +1,14 @@
+{
+  "tasks": {
+    "bench": "deno bench --allow-read --allow-run benchmark.ts",
+    "dev": "deno run --allow-read --watch main.ts -u CombatWombatEsq -i lemmy.world",
+    "example": "deno run --allow-read --allow-env --allow-net main.ts -u CombatWombatEsq -i lemmy.world",
+    "test": "deno test --allow-read --allow-run main.test.ts"
+  },
+  "imports": {
+    "flags/mod.ts": "https://deno.land/std@0.195.0/flags/mod.ts",
+    "testing/": "https://deno.land/std@0.195.0/testing/",
+    "lemmy-js-client/": "npm:/lemmy-js-client/",
+    "cliui/deno.ts": "https://deno.land/x/cliui@v8.0.1-deno/deno.ts"
+  }
+}
