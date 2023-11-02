@@ -3,6 +3,7 @@
     "bench": "deno bench --allow-read --allow-run benchmark.ts",
     "dev": "deno run --allow-read --watch main.ts -u CombatWombatEsq -i lemmy.world",
     "example": "deno run --allow-read --allow-env --allow-net main.ts -u CombatWombatEsq -i lemmy.world",
+    "npm-publish": "deno run --allow-env --allow-read --allow-net --allow-write --allow-run npm-publish.ts",
     "test": "deno test --allow-read --allow-run main.test.ts"
   },
   "imports": {
