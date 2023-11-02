@@ -17,7 +17,7 @@ npx lemmyscorecard -u <your username> -i <your instance url>
 Outputs a little scorecard like this
 
 ```shell
-Counts for CombatWombatEsq
+Counts for <your username>
                                          count                                   score
                                post                          139                           4493
                                comment                       135                           249

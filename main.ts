@@ -50,26 +50,24 @@ import type { PersonView } from "lemmy-js-client/";
     console.log(ui.toString());
   };
 
-  if (import.meta.main) {
-    const options = getOptions();
+  const options = getOptions();
 
-    if (options.help) {
-      console.log(
-        "usage: deno run lemmy-scorecard --username <my username> --instance <my instance url>"
-      );
-      Deno.exit(0);
-    }
-
-    if (options.version) {
-      console.log("lemmy-scorecard v0.0.1");
-      Deno.exit(0);
-    }
-
-    assert(!!options.username, "username is required");
-    assert(!!options.instance, "instance is required");
-
-    const scorecard = await fetchDataForUser(options);
-
-    logScorecard(scorecard);
+  if (options.help) {
+    console.log(
+      "usage: deno run lemmy-scorecard --username <my username> --instance <my instance url>"
+    );
+    Deno.exit(0);
   }
+
+  if (options.version) {
+    console.log("lemmy-scorecard v0.0.1");
+    Deno.exit(0);
+  }
+
+  assert(!!options.username, "username is required");
+  assert(!!options.instance, "instance is required");
+
+  const scorecard = await fetchDataForUser(options);
+
+  logScorecard(scorecard);
 })();
