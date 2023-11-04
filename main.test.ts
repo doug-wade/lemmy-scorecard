@@ -1,42 +1,51 @@
-import { assertEquals, assertMatch } from "testing/asserts.ts";
+import main from './main.ts';
+import { assertEquals } from "testing/asserts.ts";
+import { assertSpyCall, spy } from 'testing/mock.ts';
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  it,
+} from "testing/bdd.ts";
 
-const runWithArgs = async (args: string[]) => {
-  const command = new Deno.Command(Deno.execPath(), {
-    args: ["run", "--allow-read", "main.ts", ...args],
+import type { Spy } from 'testing/mock.ts';
+
+let logSpy: Spy;
+describe('main', () => {
+  beforeEach(() => {
+    logSpy = spy(console, "log");
   });
 
-  const { code, stdout, stderr } = await command.output();
+  afterEach(() => {
+    logSpy.restore();
+  });
 
-  const textDecoder = new TextDecoder();
-  return {
-    code,
-    stderr: textDecoder.decode(stderr),
-    stdout: textDecoder.decode(stdout),
-  };
-};
+  it('outputs the version', async () => {
+    await main(['-v']);
 
-Deno.test(async function version() {
-  const { code, stdout, stderr } = await runWithArgs(["-v"]);
+    assertSpyCall(logSpy, 0, { 
+      args: ["lemmy-scorecard v0.0.4"],
+      returned: undefined,
+    });
+  });
 
-  console.log(stdout, stderr);
+  it('outputs a help message', async () => {
+    await main(['-h']);
 
-  assertEquals(code, 0);
-  assertMatch(stdout, /v\d+\.\d+\.\d+/);
-  assertEquals(stderr, "");
-});
+    assertSpyCall(logSpy, 0, { 
+      args: ["usage: deno run lemmy-scorecard --username <my username> --instance <my instance url>"],
+      returned: undefined,
+    });
+  });
 
-Deno.test(async function help() {
-  const { code, stdout, stderr } = await runWithArgs(["-h"]);
-
-  assertEquals(code, 0);
-  assertMatch(stdout, /usage/);
-  assertEquals(stderr, "");
-});
-
-Deno.test(async function noArgs() {
-  const { code, stdout, stderr } = await runWithArgs([]);
-
-  assertEquals(code, 1);
-  assertMatch(stderr, /error/);
-  assertEquals(stdout, "");
+  it('outputs an error message when called with no args', async () => {
+    let error;
+    try {
+      await main([]);
+    } catch (e) {
+      error = e;
+    }
+  
+    assertEquals(error.message, 'username is required');
+  })
 });

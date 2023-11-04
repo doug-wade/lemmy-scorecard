@@ -20,7 +20,7 @@ await build({
   entryPoints: [{
     kind: "bin",
     name: "lemmyscorecard",
-    path: "./main.ts",
+    path: "./mod.ts",
   }],
   outDir: "./npm",
   shims: {
@@ -46,12 +46,13 @@ await build({
       version: "^0.18.0",
     },
   },
-  test: false,
   postBuild() {
     Deno.copyFileSync("LICENSE", "npm/LICENSE");
     Deno.copyFileSync("README.md", "npm/README.md");
   },
 });
 
-Deno.chdir("./npm");
-await execBuildCommand('npm', ['publish', Deno.args[1]]);
+if (Deno.args[1]) {
+  Deno.chdir("./npm");
+  await execBuildCommand('npm', ['publish', Deno.args[1]]);
+}
