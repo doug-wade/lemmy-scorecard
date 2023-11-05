@@ -1,14 +1,14 @@
 import main from './main.ts';
-import { assertEquals } from "testing/asserts.ts";
-import { assertSpyCall, spy } from 'testing/mock.ts';
+import { assertEquals } from "https://deno.land/std@0.205.0/testing/asserts.ts";
+import { assertSpyCall, spy } from 'https://deno.land/std@0.205.0/testing/mock.ts';
 import {
   afterEach,
   beforeEach,
   describe,
   it,
-} from "testing/bdd.ts";
+} from "https://deno.land/std@0.205.0/testing/bdd.ts";
 
-import type { Spy } from 'testing/mock.ts';
+import type { Spy } from 'https://deno.land/std@0.205.0/testing/mock.ts';
 
 let logSpy: Spy;
 describe('main', () => {

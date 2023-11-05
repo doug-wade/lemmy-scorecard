@@ -1,10 +1,10 @@
-import { assert } from "testing/asserts.ts";
-import { parse } from "flags/mod.ts";
+import { assert } from "https://deno.land/std@0.205.0/testing/asserts.ts";
+import { parse } from "https://deno.land/std@0.205.0/flags/mod.ts";
 
-import { LemmyHttp } from "lemmy-js-client/";
-import cliui from "cliui/deno.ts";
+import cliui from "https://deno.land/x/cliui@v8.0.1-deno/deno.ts";
+import { LemmyHttp } from "npm:/lemmy-js-client/";
 
-import type { PersonView } from "lemmy-js-client/";
+import type { PersonView } from "npm:/lemmy-js-client/";
 
 export default async (args: string[]) => {
     const parsed = parse(args);
