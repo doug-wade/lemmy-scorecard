@@ -1,6 +1,9 @@
-import main from './main.ts';
+import main from "./main.ts";
 import { assertEquals } from "https://deno.land/std@0.205.0/testing/asserts.ts";
-import { assertSpyCall, spy } from 'https://deno.land/std@0.205.0/testing/mock.ts';
+import {
+  assertSpyCall,
+  spy,
+} from "https://deno.land/std@0.205.0/testing/mock.ts";
 import {
   afterEach,
   beforeEach,
@@ -8,10 +11,10 @@ import {
   it,
 } from "https://deno.land/std@0.205.0/testing/bdd.ts";
 
-import type { Spy } from 'https://deno.land/std@0.205.0/testing/mock.ts';
+import type { Spy } from "https://deno.land/std@0.205.0/testing/mock.ts";
 
 let logSpy: Spy;
-describe('main', () => {
+describe("main", () => {
   beforeEach(() => {
     logSpy = spy(console, "log");
   });
@@ -20,32 +23,34 @@ describe('main', () => {
     logSpy.restore();
   });
 
-  it('outputs the version', async () => {
-    await main(['-v']);
+  it("outputs the version", async () => {
+    await main(["-v"]);
 
-    assertSpyCall(logSpy, 0, { 
+    assertSpyCall(logSpy, 0, {
       args: ["lemmy-scorecard v0.0.4"],
       returned: undefined,
     });
   });
 
-  it('outputs a help message', async () => {
-    await main(['-h']);
+  it("outputs a help message", async () => {
+    await main(["-h"]);
 
-    assertSpyCall(logSpy, 0, { 
-      args: ["usage: deno run lemmy-scorecard --username <my username> --instance <my instance url>"],
+    assertSpyCall(logSpy, 0, {
+      args: [
+        "usage: deno run lemmy-scorecard --username <my username> --instance <my instance url>",
+      ],
       returned: undefined,
     });
   });
 
-  it('outputs an error message when called with no args', async () => {
+  it("outputs an error message when called with no args", async () => {
     let error;
     try {
       await main([]);
     } catch (e) {
       error = e;
     }
-  
-    assertEquals(error.message, 'username is required');
-  })
+
+    assertEquals(error.message, "username is required");
+  });
 });
