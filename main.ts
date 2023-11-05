@@ -1,4 +1,4 @@
-import { assert } from "https://deno.land/std@0.205.0/testing/asserts.ts";
+import { assert } from "https://deno.land/std@0.205.0/assert/mod.ts";
 import { parse } from "https://deno.land/std@0.205.0/flags/mod.ts";
 
 import cliui from "https://deno.land/x/cliui@v8.0.1-deno/deno.ts";

@@ -1,18 +1,6 @@
-import { build, emptyDir } from "https://deno.land/x/dnt/mod.ts";
+import { build, emptyDir } from "https://deno.land/x/dnt@0.38.1/mod.ts";
 
-const decoder = new TextDecoder();
-
-const execBuildCommand = async (cmd: string, args: string[] = []) => {
-  const command = new Deno.Command(cmd, { args });
-
-  const { code, stdout, stderr } = await command.output();
-
-  if (code === 0) {
-    console.log(decoder.decode(stdout));
-  } else {
-    console.error(decoder.decode(stderr));
-  }
-};
+const version = Deno.args[0].startsWith('v') ? Deno.args[0].replace('v', '') : Deno.args[0];
 
 await emptyDir("./npm");
 
@@ -28,7 +16,7 @@ await build({
   },
   package: {
     name: "lemmyscorecard",
-    version: Deno.args[0],
+    version,
     description: "Gets the total post and comment karma for a Lemmy user.",
     license: "MIT",
     repository: {
@@ -39,7 +27,6 @@ await build({
       url: "https://github.com/doug-wade/lemmy-scorecard/issues",
     },
   },
-  importMap: "deno.jsonc",
   mappings: {
     "npm:/lemmy-js-client/": {
       name: "lemmy-js-client",
@@ -51,8 +38,3 @@ await build({
     Deno.copyFileSync("README.md", "npm/README.md");
   },
 });
-
-if (Deno.args[1]) {
-  Deno.chdir("./npm");
-  await execBuildCommand("npm", ["publish", Deno.args[1]]);
-}
