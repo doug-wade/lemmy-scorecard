@@ -4,7 +4,8 @@ Gets the total post and comment karma for a Lemmy user.
 
 ## Usage
 
-Run it with the username and instance of the user you want to calculate the scorecard for
+Run it with the username and instance of the user you want to calculate the
+scorecard for
 
 ```shell
 # Deno
@@ -23,7 +24,8 @@ Counts for <your username>
                                comment                       135                           249
 ```
 
-We also take `-h, --help` and `-v, --version` flags to show a help message and the current version, respectively.
+We also take `-h, --help` and `-v, --version` flags to show a help message and
+the current version, respectively.
 
 ```shell
 # Deno

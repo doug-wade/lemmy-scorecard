@@ -6,13 +6,10 @@
     "npm-publish": "deno run --allow-env --allow-read --allow-net --allow-write --allow-run npm-publish.ts",
     "test": "deno test --allow-read --allow-run main.test.ts"
   },
-  "imports": {
-    "flags/mod.ts": "https://deno.land/std@0.205.0/flags/mod.ts",
-    "testing/": "https://deno.land/std@0.205.0/testing/",
-    "lemmy-js-client/": "npm:/lemmy-js-client/",
-    "cliui/deno.ts": "https://deno.land/x/cliui@v8.0.1-deno/deno.ts"
-  },
   "lint": {
+    "exclude": ["npm/"]
+  },
+  "fmt": {
     "exclude": ["npm/"]
   }
 }

@@ -1,18 +1,18 @@
 import { build, emptyDir } from "https://deno.land/x/dnt/mod.ts";
 
-const decoder = new TextDecoder()
+const decoder = new TextDecoder();
 
 const execBuildCommand = async (cmd: string, args: string[] = []) => {
   const command = new Deno.Command(cmd, { args });
-  
+
   const { code, stdout, stderr } = await command.output();
-  
+
   if (code === 0) {
     console.log(decoder.decode(stdout));
   } else {
     console.error(decoder.decode(stderr));
   }
-}
+};
 
 await emptyDir("./npm");
 
@@ -54,5 +54,5 @@ await build({
 
 if (Deno.args[1]) {
   Deno.chdir("./npm");
-  await execBuildCommand('npm', ['publish', Deno.args[1]]);
+  await execBuildCommand("npm", ["publish", Deno.args[1]]);
 }
