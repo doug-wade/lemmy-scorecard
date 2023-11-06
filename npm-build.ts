@@ -4,6 +4,8 @@ const version = Deno.args[0].startsWith("v")
   ? Deno.args[0].replace("v", "")
   : Deno.args[0];
 
+console.log(`building version ${version}`);
+
 await emptyDir("./npm");
 
 await build({
