@@ -61,7 +61,7 @@ export default async (args: string[]) => {
   }
 
   if (options.version) {
-    console.log("lemmy-scorecard v0.0.4");
+    console.log("lemmy-scorecard v0.1.0");
     return;
   }
 
