@@ -36,3 +36,11 @@ dpx lemmyscorecard -v
 npx lemmyscorecard -h
 npx lemmyscorecard -v
 ```
+
+## Required permissions
+
+The following permissions are required for use
+
+- `--allow-read`
+- `--allow-env`
+- `--allow-net`
