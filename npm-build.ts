@@ -2,9 +2,7 @@ import { build, emptyDir } from "https://deno.land/x/dnt@0.38.1/mod.ts";
 
 const firstArg = Deno.args[0] || "v0.0.1";
 
-const version = firstArg.startsWith("v")
-  ? firstArg.replace("v", "")
-  : firstArg;
+const version = firstArg.startsWith("v") ? firstArg.replace("v", "") : firstArg;
 
 await emptyDir("./npm");
 
