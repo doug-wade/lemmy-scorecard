@@ -2,8 +2,6 @@
 # They are provided by a third-party and are governed by
 # separate terms of service, privacy policy, and support
 # documentation.
-
-# This workflow will install Deno then run `deno lint` and `deno test`.
 # For more information see: https://github.com/denoland/setup-deno
 
 name: Deno
@@ -38,3 +36,6 @@ jobs:
 
       - name: Run tests
         run: deno task test
+
+      - name: Run npm build
+        run: deno task npm-build
