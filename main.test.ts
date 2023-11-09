@@ -27,7 +27,7 @@ describe("main", () => {
     await main(["-v"]);
 
     assertSpyCall(logSpy, 0, {
-      args: ["lemmy-scorecard v0.0.4"],
+      args: ["lemmy-scorecard v0.1.0"],
       returned: undefined,
     });
   });
